@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:entries="@array/priorities"
-        android:background="@drawable/shape"
+        android:background="@drawable/shape1"
         android:layout_marginTop="8dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

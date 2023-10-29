@@ -14,5 +14,6 @@ class updateFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_update, container, false)
+
     }
 }
