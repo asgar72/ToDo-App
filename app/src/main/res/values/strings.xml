@@ -10,6 +10,8 @@
     <string name="priority_medium">Priority Medium</string>
     <string name="priority_low">Priority Low</string>
     <string name="check">Check</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 
     <string-array name="priorities">
         <item>High Priority</item>
