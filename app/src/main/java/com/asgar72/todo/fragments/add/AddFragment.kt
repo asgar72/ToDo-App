@@ -13,6 +13,7 @@ import com.asgar72.todo.data.models.Priority
 import com.asgar72.todo.data.models.ToDoData
 import com.asgar72.todo.data.viewModel.ToDoViewModel
 import com.asgar72.todo.databinding.FragmentAddBinding
+import com.asgar72.todo.fragments.SharedViewModel
 
 class AddFragment : Fragment() {
 
@@ -20,6 +21,7 @@ class AddFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,13 +53,13 @@ class AddFragment : Fragment() {
         val mPriority = binding.prioritySpinner.selectedItem.toString()
         val mDescription = binding.descriptionEt.text.toString()
 
-        val validation = verifyDataFromUser(mTitle,mDescription)
+        val validation = mSharedViewModel.verifyDataFromUser(mTitle,mDescription)
         if (validation){
             //Insert data to database
             val newData = ToDoData(
                 0,
                 mTitle,
-                parsePriority(mPriority),
+                mSharedViewModel.parsePriority(mPriority),
                 mDescription
             )
             mToDoViewModel.insertData(newData)
@@ -69,18 +71,5 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun verifyDataFromUser(title: String, description: String): Boolean{
-        return if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)){
-            false
-        }else !(title.isEmpty() || description.isEmpty())
-    }
 
-    private fun parsePriority(priority: String): Priority{
-        return when(priority){
-            "High Priority" -> {Priority.HIGH}
-            "Medium Priority" -> {Priority.MEDIUM}
-            "Low Priority" -> {Priority.LOW}
-            else -> Priority.LOW
-        }
-    }
 }
