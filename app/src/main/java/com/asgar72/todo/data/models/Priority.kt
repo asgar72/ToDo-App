@@ -1,4 +1,4 @@
-package com.asgar72.todo.data
+package com.asgar72.todo.data.models
 
 enum class Priority {
     HIGH,

@@ -1,6 +1,8 @@
-package com.asgar72.todo.data
+package com.asgar72.todo.data.repository
 
 import androidx.lifecycle.LiveData
+import com.asgar72.todo.data.ToDoDao
+import com.asgar72.todo.data.models.ToDoData
 
 class ToDoRepository (private val toDoDao: ToDoDao) {
 
