@@ -5,7 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.asgar72.todo.R
 
-class updateFragment : Fragment() {
+class UpdateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
