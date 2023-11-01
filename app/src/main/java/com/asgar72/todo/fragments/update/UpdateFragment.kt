@@ -28,15 +28,14 @@ class UpdateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment
+        //Data binding
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
 
         //set menu
         setHasOptionsMenu(true)
 
-        binding.currentTitleEt.setText(args.currentItem.title)
-        binding.currentDescriptionEt.setText(args.currentItem.description)
-        binding.currentPrioritySpinner.setSelection(mSharedViewModel.parsePriorityToInt(args.currentItem.priority))
+        //Spinner Item Selected Listener
         binding.currentPrioritySpinner.onItemSelectedListener = mSharedViewModel.listener
 
         return binding.root
@@ -95,5 +94,10 @@ class UpdateFragment : Fragment() {
         builder.setTitle("Delete '${args.currentItem.title}'?")
         builder.setMessage("Are you sure want to remove '${args.currentItem.title}'?")
         builder.create().show()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
