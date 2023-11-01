@@ -18,6 +18,8 @@ import com.asgar72.todo.fragments.SharedViewModel
 import com.asgar72.todo.fragments.list.adapter.ListAdapter
 import com.asgar72.todo.fragments.list.adapter.SwipeToDelete
 import com.google.android.material.snackbar.Snackbar
+import jp.wasabeef.recyclerview.animators.LandingAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import java.text.FieldPosition
 
 class ListFragment : Fragment() {
@@ -58,7 +60,10 @@ class ListFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        //this is animation in recyclerview
+        recyclerView.itemAnimator = LandingAnimator().apply {
+            addDuration = 300
+        }
         //Swipe to Delete
         swipeToDelete(recyclerView)
     }
