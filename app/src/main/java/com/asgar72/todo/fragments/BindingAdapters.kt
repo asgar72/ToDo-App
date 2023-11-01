@@ -40,31 +40,24 @@ class BindingAdapters {
         @BindingAdapter("android:parsePriorityToInt")
         @JvmStatic
         fun parsePriorityToInt(view: Spinner, priority: Priority) {
-            when (priority) {
-                Priority.HIGH -> {
-                    view.setSelection(0)
-                }
-                Priority.MEDIUM -> {
-                    view.setSelection(1)
-                }
-                Priority.LOW -> {
-                    view.setSelection(2)
-                }
+            when (priority) {Priority.HIGH -> { view.setSelection(0) }
+                Priority.MEDIUM -> { view.setSelection(1) }
+                Priority.LOW -> { view.setSelection(2) }
             }
         }
 
-        @BindingAdapter("android:parsePriorityColor")
+        @BindingAdapter("android:parsePriorityToInt")
         @JvmStatic
-        fun parsePriorityColor(cardView: CardView,priority: Priority){
-            when(priority){
-                Priority.HIGH -> { cardView.setBackgroundColor(cardView.context.getColor(R.color.red))}
-                Priority.MEDIUM -> { cardView.setBackgroundColor(cardView.context.getColor(R.color.yellow))}
-                Priority.LOW -> { cardView.setBackgroundColor(cardView.context.getColor(R.color.green))}
-                else -> {}
+        fun parsePriorityToInt(view: CardView, priority: Priority) {
+            val colorResId = when (priority) {
+                Priority.HIGH -> R.color.red
+                Priority.MEDIUM -> R.color.yellow
+                Priority.LOW -> R.color.green
             }
+            view.setCardBackgroundColor(view.context.getColor(colorResId))
         }
 
-        @BindingAdapter("android: sendDataToUpdateFragment")
+        @BindingAdapter("android:sendDataToUpdateFragment")
         @JvmStatic
         fun sendDataToUpdateFragment(view: ConstraintLayout, currentItem: ToDoData){
             view.setOnClickListener {
