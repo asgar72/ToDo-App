@@ -38,12 +38,14 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.findViewById<TextView>(R.id.title_txt).text = dataList[position].title
-        holder.itemView.findViewById<TextView>(R.id.description_txt).text = dataList[position].description
+        holder.itemView.findViewById<TextView>(R.id.description_txt).text =
+            dataList[position].description
 
         holder.itemView.findViewById<ConstraintLayout>(R.id.row_background).setOnClickListener {
 
-         val action = ListFragmentDirections.actionListFragmentToUpdateFragment(dataList[position])
-         holder.itemView.findNavController().navigate(action)
+            val action =
+                ListFragmentDirections.actionListFragmentToUpdateFragment(dataList[position])
+            holder.itemView.findNavController().navigate(action)
 
         }
 
@@ -65,12 +67,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
                     ContextCompat.getColor
                         (holder.itemView.context, R.color.green)
                 )
-
-
             else -> {}
         }
     }
-    fun setData(toDoData: List<ToDoData>){
+
+    fun setData(toDoData: List<ToDoData>) {
         this.dataList = toDoData
         notifyDataSetChanged()
     }

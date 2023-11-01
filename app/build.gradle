@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-   id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -25,7 +25,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 
     buildFeatures {
         dataBinding true
@@ -53,9 +52,6 @@ android {
             jcenter()
         }
     }
-
-
-
 }
 
 dependencies {

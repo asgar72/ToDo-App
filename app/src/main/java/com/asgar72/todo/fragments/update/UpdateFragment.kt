@@ -43,13 +43,13 @@ class UpdateFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.update_fragment_menu,menu)
+        inflater.inflate(R.menu.update_fragment_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-           R.id.menu_save -> updateItem()
-            R.id.menu_delete ->  confirmItemRemoval()
+        when (item.itemId) {
+            R.id.menu_save -> updateItem()
+            R.id.menu_delete -> confirmItemRemoval()
         }
 
         return super.onOptionsItemSelected(item)
@@ -60,33 +60,38 @@ class UpdateFragment : Fragment() {
         val description = binding.currentDescriptionEt.text.toString()
         val priority = binding.currentPrioritySpinner.selectedItem.toString()
 
-        val validation = mSharedViewModel.verifyDataFromUser(title,description)
-        if (validation){
+        val validation = mSharedViewModel.verifyDataFromUser(title, description)
+        if (validation) {
             //update current item
             val updatedItem = ToDoData(
                 args.currentItem.id,
                 title,
                 mSharedViewModel.parsePriority(priority),
                 description
-                )
+            )
             mToDoViewModel.updateData(updatedItem)
-            Toast.makeText(requireContext(),"Successfully Updated!",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show()
             //navigate back
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
-        }else{
-            Toast.makeText(requireContext(),"Please fill out all fields.",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
     //Show alertdialog to confirm item removal
     private fun confirmItemRemoval() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _, _ ->
+        builder.setPositiveButton("Yes") { _, _ ->
             mToDoViewModel.deleteItem(args.currentItem)
-            Toast.makeText(requireContext(),"Successfully Deleted: '${args.currentItem.title}'",Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Successfully Deleted: '${args.currentItem.title}'",
+                Toast.LENGTH_SHORT
+            ).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
-        builder.setNegativeButton("No"){ _, _ ->}
+        builder.setNegativeButton("No") { _, _ -> }
         builder.setTitle("Delete '${args.currentItem.title}'?")
         builder.setMessage("Are you sure want to remove '${args.currentItem.title}'?")
         builder.create().show()

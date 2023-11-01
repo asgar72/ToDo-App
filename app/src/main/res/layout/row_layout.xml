@@ -36,11 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
+            android:maxLength="20"
             android:text="This is Title"
             android:textColor="@color/darkGray"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:maxLength="20"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

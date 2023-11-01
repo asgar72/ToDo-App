@@ -22,7 +22,7 @@ class ListFragment : Fragment() {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
 
-    private val  mSharedViewModel: SharedViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     private val adapter: ListAdapter by lazy { ListAdapter() }
 
@@ -39,9 +39,9 @@ class ListFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mToDoViewModel.getAllData.observe(viewLifecycleOwner, Observer {data ->
+        mToDoViewModel.getAllData.observe(viewLifecycleOwner, Observer { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
-             adapter.setData(data)
+            adapter.setData(data)
         })
 
         //for check database is empty or not
@@ -62,11 +62,11 @@ class ListFragment : Fragment() {
     }
 
     private fun showEmptyDatabaseViews(emptyDatabase: Boolean) {
-            if(emptyDatabase){
-                binding.noDataImageview?.visibility = View.VISIBLE
-            }else{
-                binding.noDataImageview?.visibility = View.INVISIBLE
-            }
+        if (emptyDatabase) {
+            binding.noDataImageview?.visibility = View.VISIBLE
+        } else {
+            binding.noDataImageview?.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,7 +74,7 @@ class ListFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_delete_all){
+        if (item.itemId == R.id.menu_delete_all) {
             confirmRemoval()
         }
         return super.onOptionsItemSelected(item)
@@ -83,12 +83,14 @@ class ListFragment : Fragment() {
     //show AlertDialog to Confirm Removal of All item from database table
     private fun confirmRemoval() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _, _ ->
+        builder.setPositiveButton("Yes") { _, _ ->
             mToDoViewModel.deleteAll()
-            Toast.makeText(requireContext(),"Successfully Deleted Everything..",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(), "Successfully Deleted Everything..",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-        builder.setNegativeButton("No"){ _, _ ->}
+        builder.setNegativeButton("No") { _, _ -> }
         builder.setTitle("Delete Everything ?")
         builder.setMessage("Are you sure want to remove everything?")
         builder.create().show()
