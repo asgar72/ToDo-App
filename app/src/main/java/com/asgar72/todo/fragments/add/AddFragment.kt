@@ -1,15 +1,12 @@
 package com.asgar72.todo.fragments.add
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.asgar72.todo.R
-import com.asgar72.todo.data.models.Priority
 import com.asgar72.todo.data.models.ToDoData
 import com.asgar72.todo.data.viewModel.ToDoViewModel
 import com.asgar72.todo.databinding.FragmentAddBinding
