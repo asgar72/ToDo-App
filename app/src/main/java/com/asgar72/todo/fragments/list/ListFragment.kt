@@ -51,7 +51,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         //observe LiveData
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, Observer { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
-            adapter.setData(data)
+            //data show in reversed order 
+            val reversedData = data.reversed()
+            adapter.setData(reversedData)
         })
 
         //Set menu
@@ -64,6 +66,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
         //this is animation in recyclerview
         recyclerView.itemAnimator = LandingAnimator().apply {
             addDuration = 300
