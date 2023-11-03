@@ -1,6 +1,7 @@
 package com.asgar72.todo.fragments.list
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -114,8 +115,24 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             R.id.menu_delete_all -> confirmRemoval()
             R.id.menu_priority_high -> mToDoViewModel.sortByHighPriority.observe(this, Observer { adapter.setData(it) })
             R.id.menu_priority_low -> mToDoViewModel.sortByLowPriority.observe(this, Observer { adapter.setData(it) })
+            R.id.menu_share -> shareMenu()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //share this App
+    private fun shareMenu() {
+        //Toast.makeText(requireContext(),"click on share",Toast.LENGTH_SHORT).show()
+        val packageName = requireContext().packageName
+        val appLink = "https://play.google.com/store/apps/details?id=$packageName"
+        val textToShare = "ToDo Timer - Click the link to download the app: $appLink"
+
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, textToShare)
+        }
+        startActivity(Intent.createChooser(sendIntent, "Share ToDo Timer App"))
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
