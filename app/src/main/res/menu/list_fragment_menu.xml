@@ -13,7 +13,7 @@
         android:icon="@drawable/grid_view"
         android:iconTint="@color/white"
         android:title="@string/grid_view"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 
 
 
@@ -35,6 +35,8 @@
     <item
         android:id="@+id/menu_delete_all"
         android:title="Delete All"
+        android:icon="@drawable/ic_delete"
+        android:iconTintMode="add"
         app:showAsAction="never" />
 
 

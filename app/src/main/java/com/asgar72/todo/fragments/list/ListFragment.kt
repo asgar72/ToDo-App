@@ -35,6 +35,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+
+    private var isGridView = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +54,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         //observe LiveData
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, Observer { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
-            //data show in reversed order 
+            //data show in reversed order
             val reversedData = data.reversed()
             adapter.setData(reversedData)
         })
@@ -65,7 +68,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun setupRecyclerview() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        // Set initial layout manager
+        toggleLayoutManager()
+//        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         //this is animation in recyclerview
         recyclerView.itemAnimator = LandingAnimator().apply {
@@ -111,6 +117,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -119,8 +126,36 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             R.id.menu_priority_high -> mToDoViewModel.sortByHighPriority.observe(this, Observer { adapter.setData(it) })
             R.id.menu_priority_low -> mToDoViewModel.sortByLowPriority.observe(this, Observer { adapter.setData(it) })
             R.id.menu_share -> shareMenu()
+            R.id.menu_grid -> {
+                toggleLayout()
+                updateLayoutIcon(item)
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //GridView
+    private fun toggleLayout() {
+        isGridView = !isGridView
+        toggleLayoutManager()
+    }
+
+    private fun toggleLayoutManager() {
+        val recyclerView = binding.recyclerView
+        if (isGridView) {
+            recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        } else {
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
+        adapter.notifyDataSetChanged()
+    }
+    private fun updateLayoutIcon(item: MenuItem) {
+        if (isGridView) {
+            item.setIcon(R.drawable.list_view)  // Use the icon for List View
+        } else {
+            item.setIcon(R.drawable.grid_view)  // Use the icon for Grid View
+        }
     }
 
     //share this App
@@ -137,7 +172,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         startActivity(Intent.createChooser(sendIntent, "Share ToDo Timer App"))
     }
-
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null){
             searchThroughDatabase(query)
@@ -152,7 +186,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
     private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
-
 
         mToDoViewModel.searchDatabase(searchQuery).observe(this, Observer { list ->
             list?.let {
@@ -176,7 +209,6 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         builder.setMessage("Are you sure want to remove everything?")
         builder.create().show()
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
