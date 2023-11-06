@@ -2,6 +2,7 @@ package com.asgar72.todo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,6 +15,19 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = findViewById(R.id.bottomNav)
         val navController = findNavController(R.id.navHostfragment)
+
+        // Add a destination changed listener
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            // Check the destination id and show/hide views accordingly
+            when (destination.id) {
+                R.id.listFragment, R.id.StopWatch -> {
+                    navView.visibility = View.VISIBLE
+                }
+                else -> {
+                    navView.visibility = View.GONE
+                }
+            }
+        }
 
         navView.setupWithNavController(navController)
         setupActionBarWithNavController(navController)
