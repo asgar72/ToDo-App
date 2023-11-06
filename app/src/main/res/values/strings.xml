@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDo</string>
+    <string name="app_name">ToDo Timer</string>
     <string name="add">Hello this is add fragment</string>
     <string name="update">hello this is update fragment</string>
     <string name="tittle">Tittle</string>
