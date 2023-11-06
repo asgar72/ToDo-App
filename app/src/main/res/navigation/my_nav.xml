@@ -24,6 +24,9 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_listFragment_to_StopWatch"
+            app:destination="@id/StopWatch" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -50,4 +53,15 @@
             android:name="currentItem"
             app:argType="com.asgar72.todo.data.models.ToDoData" />
     </fragment>
+
+   <fragment
+       android:id="@+id/StopWatch"
+       android:name="com.asgar72.todo.StopWatch"
+       android:label="Stop Watch"
+       tools:layout="@layout/fragment_stop_watch">
+
+       <action
+           android:id="@+id/action_StopWatch_to_listFragment"
+           app:destination="@id/listFragment" />
+   </fragment>
 </navigation>

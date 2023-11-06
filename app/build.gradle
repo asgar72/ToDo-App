@@ -78,5 +78,8 @@ dependencies {
     //RecyclerView animation
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
 
+    
+    //circle image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
