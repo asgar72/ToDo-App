@@ -35,12 +35,11 @@
     <item
         android:id="@+id/menu_delete_all"
         android:title="Delete All"
-        android:icon="@drawable/ic_delete"
         android:iconTintMode="add"
         app:showAsAction="never" />
 
 
     <item
         android:id="@+id/menu_share"
-        android:title="Share with Friends" />
+        android:title="Share App" />
 </menu>
