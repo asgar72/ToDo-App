@@ -11,6 +11,8 @@ import com.asgar72.todo.data.models.ToDoData
 import com.asgar72.todo.data.viewModel.ToDoViewModel
 import com.asgar72.todo.databinding.FragmentAddBinding
 import com.asgar72.todo.fragments.SharedViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddFragment : Fragment() {
 
@@ -33,6 +35,13 @@ class AddFragment : Fragment() {
 
         binding.prioritySpinner.onItemSelectedListener = mSharedViewModel.listener
 
+        //Current date and time
+        val sdf = SimpleDateFormat("d MMM yyyy HH:mm a")
+        val currentDateAndTime = sdf.format(Date())
+        binding.currentAddDT.text=currentDateAndTime
+
+
+
         return binding.root
     }
 
@@ -51,6 +60,8 @@ class AddFragment : Fragment() {
         val mTitle = binding.titleEt.text.toString()
         val mPriority = binding.prioritySpinner.selectedItem.toString()
         val mDescription = binding.descriptionEt.text.toString()
+        val currentDateAndTime = SimpleDateFormat("d MMM yyyy HH:mm a").format(Date())
+        binding.currentAddDT.text = currentDateAndTime
 
         val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if (validation) {
@@ -59,7 +70,8 @@ class AddFragment : Fragment() {
                 0,
                 mTitle,
                 mSharedViewModel.parsePriority(mPriority),
-                mDescription
+                mDescription,
+                currentDateAndTime
             )
             mToDoViewModel.insertData(newData)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()

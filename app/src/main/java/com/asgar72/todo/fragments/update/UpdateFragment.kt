@@ -13,6 +13,8 @@ import com.asgar72.todo.data.models.ToDoData
 import com.asgar72.todo.data.viewModel.ToDoViewModel
 import com.asgar72.todo.databinding.FragmentUpdateBinding
 import com.asgar72.todo.fragments.SharedViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateFragment : Fragment() {
 
@@ -58,6 +60,7 @@ class UpdateFragment : Fragment() {
         val title = binding.currentTitleEt.text.toString()
         val description = binding.currentDescriptionEt.text.toString()
         val priority = binding.currentPrioritySpinner.selectedItem.toString()
+        val currentDateAndTime = SimpleDateFormat("dd-MM-yyyy HH:mm").format(Date())
 
         val validation = mSharedViewModel.verifyDataFromUser(title, description)
         if (validation) {
@@ -66,7 +69,8 @@ class UpdateFragment : Fragment() {
                 args.currentItem.id,
                 title,
                 mSharedViewModel.parsePriority(priority),
-                description
+                description,
+                currentDateAndTime
             )
             mToDoViewModel.updateData(updatedItem)
             Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show()

@@ -53,6 +53,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/current_title_et" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/currentDateTime"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="12sp"-->
+<!--                android:text="DateTime" />-->
+
+
             <EditText
                 android:id="@+id/current_description_et"
                 android:layout_width="match_parent"
