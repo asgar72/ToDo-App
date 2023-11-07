@@ -163,7 +163,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         //Toast.makeText(requireContext(),"click on share",Toast.LENGTH_SHORT).show()
         val packageName = requireContext().packageName
         val appLink = "https://play.google.com/store/apps/details?id=$packageName"
-        val textToShare = "ToDo - Click the link to download the app: $appLink"
+        val textToShare = "ToDo Timer -Click the link to download the App :\n $appLink"
 
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
