@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDo Timer</string>
+    <string name="app_name">ToDo</string>
     <string name="add">Hello this is add fragment</string>
     <string name="update">hello this is update fragment</string>
     <string name="tittle">Tittle</string>
@@ -19,6 +19,5 @@
         <item>Medium Priority</item>
         <item>Low Priority</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

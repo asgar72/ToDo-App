@@ -52,7 +52,6 @@ class UpdateFragment : Fragment() {
             R.id.menu_save -> updateItem()
             R.id.menu_delete -> confirmItemRemoval()
         }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -74,13 +73,16 @@ class UpdateFragment : Fragment() {
             )
             mToDoViewModel.updateData(updatedItem)
             Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show()
-            //navigate back
+
+            //navigate back and pop the back stack
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+            findNavController().popBackStack(R.id.listFragment, inclusive = true)
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
                 .show()
         }
     }
+
 
     //Show alertdialog to confirm item removal
     private fun confirmItemRemoval() {
@@ -92,7 +94,7 @@ class UpdateFragment : Fragment() {
                 "Successfully Deleted: '${args.currentItem.title}'",
                 Toast.LENGTH_SHORT
             ).show()
-            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+//            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
         builder.setNegativeButton("No") { _, _ -> }
         builder.setTitle("Delete '${args.currentItem.title}'?")

@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.asgar72.todo.R
 import com.asgar72.todo.data.models.ToDoData
@@ -76,10 +77,16 @@ class AddFragment : Fragment() {
             mToDoViewModel.insertData(newData)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
             //Navigate back
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
+            findNavController().navigate(
+                R.id.action_addFragment_to_listFragment,
+                null,
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.listFragment, true)
+                    .build()
+            )
+
         } else {
-            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }
     }
 
