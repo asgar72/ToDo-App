@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.asgar72.todo.R
@@ -75,8 +76,13 @@ class UpdateFragment : Fragment() {
             Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show()
 
             //navigate back and pop the back stack
-            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
-            findNavController().popBackStack(R.id.listFragment, inclusive = true)
+            findNavController().navigate(
+                R.id.action_updateFragment_to_listFragment,
+                null,
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.listFragment, true)
+                    .build()
+            )
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
                 .show()
