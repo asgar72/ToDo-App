@@ -5,11 +5,12 @@ Additionally, the app features a Stopwatch tab where users can start the countdo
 ## Screenshots
 <p align="center">
 
-<img src="https://github.com/asgar72/ToDo-App/assets/85785487/2f195b77-9742-4763-a1ab-747615850b82" alt="alt text" width="300 ">
-<img src="https://github.com/asgar72/ToDo-App/assets/85785487/41e805be-4f53-47cd-b981-bd8ac6c583fe" alt="alt text" width="300"><br>
-<img src="https://github.com/asgar72/ToDo-App/assets/85785487/a5657055-b849-45b4-a472-8c4bbe38c6dd" alt="alt text" width="300 ">
-<img src="https://github.com/asgar72/ToDo-App/assets/85785487/a5204760-5d59-4898-b7a9-dbb08a6f38cf" alt="alt text" width="300">
-<img src="https://github.com/asgar72/ToDo-App/assets/85785487/95cf66be-1d8d-44f1-a871-792767bf8d78" alt="alt text" width="300">
+<img src="https://github.com/asgar72/ToDo-App/assets/85785487/96856225-796d-4633-88f6-5bf8e8ce61ee" alt="alt text" width="300 ">
+<img src="https://github.com/asgar72/ToDo-App/assets/85785487/7902d768-9c45-4d9e-9158-e4e37b7330c1" alt="alt text" width="300"><br>
+<img src="https://github.com/asgar72/ToDo-App/assets/85785487/5690b81f-fadf-4120-8941-7d998605b7a8" alt="alt text" width="300 ">
+<img src="https://github.com/asgar72/ToDo-App/assets/85785487/46b16a28-618f-4d6a-9f24-192150b02843" alt="alt text" width="300">
+<img src="https://github.com/asgar72/ToDo-App/assets/85785487/b12aef86-e106-4783-aca3-63b844a83abe" alt="alt text" width="300">
+
 </p>
 
 ## Built With
